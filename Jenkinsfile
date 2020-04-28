@@ -1,7 +1,7 @@
 pipeline {
     environment {
             registry = "davidsimowitz/cloud-devops-capstone-project"
-            registryCredential = 'DockerHub_ID'
+            registryCredential = 'DockerHubID'
             dockerImage = ''
         }
     agent any
@@ -26,6 +26,10 @@ pipeline {
                 docker.withRegistry( '', registryCredential ) {
                 dockerImage.push()
             }
+        }
+        stage('Take Down') {
+            steps{
+                sh 'docker rmi $registry:1.0'
         }
     }
 }
