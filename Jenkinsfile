@@ -18,19 +18,25 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                dockerImage = docker.build registry + ":1.0"
+                script {
+                    dockerImage = docker.build registry + ":1.0"
+                }
             }
         }
         stage('Push to Docker Hub') {
             steps {
-                docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
                 }
             }
         }
         stage('Take Down') {
             steps{
-                sh 'docker rmi $registry:1.0'
+                script {
+                    sh 'docker rmi $registry:1.0'
+                }
             }
         }
     }
