@@ -14,9 +14,15 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    echo $USER
                     docker build -t cloud-devops-capstone-project .
                     docker image ls
+                '''
+            }
+        }
+        stage('Push to Docker Hub') {
+            steps {
+                sh '''
+                    upload_docker.sh
                 '''
             }
         }
