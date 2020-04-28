@@ -11,9 +11,10 @@ pipeline {
                 sh 'tidy -q -e static-html-directory/*.html'
             }
         }
-        stage('Build docker image') {
+        stage('Build Docker Image') {
             steps {
                 sh '''
+                    echo $USER
                     docker build -t cloud-devops-capstone-project .
                     docker image ls
                 '''
