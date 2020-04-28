@@ -11,5 +11,13 @@ pipeline {
                 sh 'tidy -q -e static-html-directory/*.html'
             }
         }
+        stage('Build docker image') {
+            steps {
+                sh '''
+                    docker build -t cloud-devops-capstone-project .
+                    docker image ls
+                '''
+            }
+        }
     }
 }
