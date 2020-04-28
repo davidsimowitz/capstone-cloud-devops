@@ -1,4 +1,9 @@
 pipeline {
+    environment {
+            registry = "davidsimowitz/cloud-devops-capstone-project"
+            registryCredential = 'DockerHub_ID'
+            dockerImage = ''
+        }
     agent any
     stages {
         stage('Initializing') {
@@ -13,17 +18,13 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh '''
-                    docker build -t cloud-devops-capstone-project .
-                    docker image ls
-                '''
+                dockerImage = docker.build registry + ":1.0"
             }
         }
         stage('Push to Docker Hub') {
             steps {
-                sh '''
-                    ./upload_docker.sh
-                '''
+                docker.withRegistry( '', registryCredential ) {
+                dockerImage.push()
             }
         }
     }
