@@ -24,12 +24,13 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 docker.withRegistry( '', registryCredential ) {
-                dockerImage.push()
+                    dockerImage.push()
+                }
             }
         }
         stage('Take Down') {
             steps{
                 sh 'docker rmi $registry:1.0'
+            }
         }
-    }
 }
