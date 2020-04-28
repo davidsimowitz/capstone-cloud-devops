@@ -6,5 +6,10 @@ pipeline {
                 sh 'echo "Initializing Jenkins Pipeline..."'
             }
         }
+        stage('Lint HTML') {
+            steps {
+                sh 'tidy -q -e *.html'
+            }
+        }
     }
 }
