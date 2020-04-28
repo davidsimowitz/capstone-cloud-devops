@@ -33,4 +33,5 @@ pipeline {
                 sh 'docker rmi $registry:1.0'
             }
         }
+    }
 }
