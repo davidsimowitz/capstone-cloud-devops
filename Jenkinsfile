@@ -22,7 +22,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 sh '''
-                    upload_docker.sh
+                    ./upload_docker.sh
                 '''
             }
         }
