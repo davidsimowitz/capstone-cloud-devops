@@ -34,7 +34,9 @@ pipeline {
         }
         stage('Deploy to Cluster') {
             steps{
-                sh './k8_cluster_initializer.sh'
+                withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                    sh './k8_cluster_initializer.sh'
+                }
             }
         }
         stage('Take Down') {
