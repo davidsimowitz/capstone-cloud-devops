@@ -39,7 +39,7 @@ Project Details
   + Rolling Deployment
 
 * Docker application:
-  + Nginx "Hello World, my name is David Simowitz" application.
+  + Nginx "Hello World, my name is (student name)" application.
 
 
 Requirements
