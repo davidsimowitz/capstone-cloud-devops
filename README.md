@@ -38,7 +38,7 @@ Project Details
 
 
 ### Lint HTML Stage:
-![Jenkins pipeline lint html stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/images/jenkins-pipeline-lint-html-stage.png)
+![Jenkins pipeline lint html stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/jenkins-pipeline-lint-html-stage.png)
 
 
 ### Build Docker Image Stage:
