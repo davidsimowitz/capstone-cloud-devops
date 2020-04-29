@@ -2,6 +2,7 @@ pipeline {
     environment {
             registry = "davidsimowitz/cloud-devops-capstone-project"
             registryCredential = 'DockerHubID'
+            version = "1.1"
             dockerImage = ''
         }
     agent any
@@ -19,7 +20,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build registry + ":1.0"
+                    dockerImage = docker.build registry + ":" + version
                 }
             }
         }
@@ -36,9 +37,17 @@ pipeline {
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
                     sh '''
+                        # Display services and pod detail pre-deployment
+                        kubectl get services
+                        kubectl get pods -o wide
+
                         # ./k8_cluster_initializer.sh
                         # ./k8_cluster_constructor.sh
                         kubectl apply --filename=k8-deployment-config.yml
+
+                        # Display services and pod detail post-deployment
+                        kubectl get services
+                        kubectl get pods -o wide
                     '''
                 }
             }
@@ -46,7 +55,7 @@ pipeline {
         stage('Take Down') {
             steps{
                 script {
-                    sh 'docker rmi $registry:1.0'
+                    sh 'docker rmi $registry:$version'
                 }
             }
         }

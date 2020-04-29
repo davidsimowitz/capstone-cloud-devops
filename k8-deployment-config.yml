@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: cloud-devops-capstone-project
-        image: davidsimowitz/cloud-devops-capstone-project:1.0
+        image: davidsimowitz/cloud-devops-capstone-project:1.1
         ports:
         - containerPort: 80
 ---
