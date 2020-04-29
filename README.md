@@ -49,7 +49,6 @@ Requirements
 * [Python 3](https://www.python.org/downloads/) is installed.
 * [Pip](https://pip.pypa.io/en/stable/installing/) is installed.
 * [Jenkins](https://www.jenkins.io/doc/book/installing/) is installed and configured correctly.
-* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) is installed.
 * [Docker](https://docs.docker.com/engine/install/ubuntu/) is installed and configured.
 * [Docker Hub](https://hub.docker.com/) Account for image repository.
 * The Kubernetes command-line tool, [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) is installed and configured.
