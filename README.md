@@ -34,27 +34,27 @@ Project Details
 
 
 ### Initializing Stage:
-![Jenkins pipeline initializing stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-initializing-stage.png)
+![Jenkins pipeline initializing stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/jenkins-pipeline-initializing-stage.png)
 
 
 ### Lint HTML Stage:
-![Jenkins pipeline lint html stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-lint-html-stage.png)
+![Jenkins pipeline lint html stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/images/jenkins-pipeline-lint-html-stage.png)
 
 
 ### Build Docker Image Stage:
-![Jenkins pipeline build docker image stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-build-docker-image-stage.png)
+![Jenkins pipeline build docker image stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/jenkins-pipeline-build-docker-image-stage.png)
 
 
 ### Push to Docker Hub Stage:
-![jenkins pipeline push to docker hub stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-push-to-docker-hub-stage.png)
+![jenkins pipeline push to docker hub stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/jenkins-pipeline-push-to-docker-hub-stage.png)
 
 
 ### Deploy to Cluster Stage:
-![Jenkins pipeline deploy to cluster stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-deploy-to-cluster-stage.png)
+![Jenkins pipeline deploy to cluster stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/jenkins-pipeline-deploy-to-cluster-stage.png)
 
 
 ### Take Down Down:
-![Jenkins pipeline take down stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-take-down-stage.png)
+![Jenkins pipeline take down stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/jenkins-pipeline-take-down-stage.png)
 
 
 
@@ -64,12 +64,12 @@ Linting Stage Verification
 
 ## HTML Linting Check Catches Invalid HTML Tag:
 
-![jenkins pipeline lint html stage fail](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-lint-html-stage-fail.png)
+![jenkins pipeline lint html stage fail](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/jenkins-pipeline-lint-html-stage-fail.png)
 
 
 ## HTML Linting Check Passes Corrected HTML Tag:
 
-![jenkins pipeline lint html stage pass](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-lint-html-stage-pass.png)
+![jenkins pipeline lint html stage pass](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/jenkins-pipeline-lint-html-stage-pass.png)
 
 
 
@@ -122,27 +122,27 @@ cloud-devops-capstone-project-7ff8ff4c6f-qqvnr   1/1     Running             0  
 
 ### Deployment Services and Pod Details Before and After Deployment to Cluster
 
-![rolling deployment services and pod details](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/rolling-deployment-services-and-pod-details.png)
+![rolling deployment services and pod details](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/rolling-deployment-services-and-pod-details.png)
 
 
 ### EKS Cluster
 
-![eks cluster general info](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/eks-cluster.png)
+![eks cluster general info](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/eks-cluster.png)
 
 
 ### CloudFormation Stack Info - EKS Cluster
 
-![eks cluster stack info](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/eks-cluster-stack-info.png)
+![eks cluster stack info](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/eks-cluster-stack-info.png)
 
 
 ### CloudFormation Events - EKS Cluster
 
-![eks cluster events](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/eks-cluster-events.png)
+![eks cluster events](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/eks-cluster-events.png)
 
 
 ### CloudFormation Resources - EKS Cluster
 
-![eks cluster resources](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/eks-cluster-resources.png)
+![eks cluster resources](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/eks-cluster-resources.png)
 
 
 
@@ -157,13 +157,13 @@ Docker application:
 
 
 ## Docker Hub Repository
-![docker hub repo](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/docker-hub-repo.png)
+![docker hub repo](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/docker-hub-repo.png)
 
 
 ## [Application Link](http://ac84e215e577d4eb9a6fa4ac3d7708a6-229427463.us-east-1.elb.amazonaws.com:8080/)
   + http://ac84e215e577d4eb9a6fa4ac3d7708a6-229427463.us-east-1.elb.amazonaws.com:8080/
 
-![application](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/application.png)
+![application](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/application.png)
 
 
 
