@@ -3,6 +3,7 @@ Develop a CI/CD Pipeline to Roll Out Containerized Microservices Using Rolling D
 =========================================================================================
 
 
+
 Udacity - Cloud DevOps Engineer Nanodegree
 ------------------------------------------
 Capstone Project: Develop a CI/CD Pipeline to Roll Out Containerized Microservices Using Rolling Deployment
@@ -24,31 +25,151 @@ Once you have completed your Continuous Integration you will set up Continuous D
 You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2577/view).
 
 
+
 Project Details
 ===============
 
-* Pipeline:
-  + Initializing
-  + Lint HTML
-  + Build Docker Image
-  + Push to Docker Hub
-  + Deploy to Cluster
-  + Take Down
 
-* Deployment Type:
-  + Rolling Deployment
-
-* Docker application:
-  + Nginx "Hello World, my name is (student name)" application.
+## Pipeline Deployment
 
 
-[Application Link](http://ac84e215e577d4eb9a6fa4ac3d7708a6-229427463.us-east-1.elb.amazonaws.com:8080/)
-==================
-* http://ac84e215e577d4eb9a6fa4ac3d7708a6-229427463.us-east-1.elb.amazonaws.com:8080/
+### Initializing Stage:
+![Jenkins pipeline initializing stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-initializing-stage.png)
+
+
+### Lint HTML Stage:
+![Jenkins pipeline lint html stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-lint-html-stage.png)
+
+
+### Build Docker Image Stage:
+![Jenkins pipeline build docker image stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-build-docker-image-stage.png)
+
+
+### Push to Docker Hub Stage:
+![jenkins pipeline push to docker hub stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-push-to-docker-hub-stage.png)
+
+
+### Deploy to Cluster Stage:
+![Jenkins pipeline deploy to cluster stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-deploy-to-cluster-stage.png)
+
+
+### Take Down Down:
+![Jenkins pipeline take down stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-take-down-stage.png)
+
+
+
+Linting Stage Verification
+==========================
+
+
+## HTML Linting Check Catches Invalid HTML Tag:
+
+![jenkins pipeline lint html stage fail](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-lint-html-stage-fail.png)
+
+
+## HTML Linting Check Passes Corrected HTML Tag:
+
+![jenkins pipeline lint html stage pass](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/jenkins-pipeline-lint-html-stage-pass.png)
+
+
+
+Deployment Type
+===============
+
+
+## Rolling Deployment
+
+
+* Deployment Logs:
+```bash
++ kubectl get services
+NAME                   TYPE           CLUSTER-IP     EXTERNAL-IP                                                              PORT(S)          AGE
+capstone-project-elb   LoadBalancer   10.100.77.85   ac84e215e577d4eb9a6fa4ac3d7708a6-229427463.us-east-1.elb.amazonaws.com   8080:32092/TCP   4h25m
+kubernetes             ClusterIP      10.100.0.1     <none>                                                                   443/TCP          4h43m
++ kubectl get pods -o wide
+NAME                                             READY   STATUS    RESTARTS   AGE     IP               NODE                             NOMINATED NODE   READINESS GATES
+cloud-devops-capstone-project-7ff8ff4c6f-2k8h4   1/1     Running   0          4h25m   192.168.15.201   ip-192-168-31-109.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-58v9w   1/1     Running   0          4h25m   192.168.48.46    ip-192-168-32-247.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-6b5qj   1/1     Running   0          4h25m   192.168.50.176   ip-192-168-32-247.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-9sbr4   1/1     Running   0          4h25m   192.168.31.21    ip-192-168-31-109.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-c8tp6   1/1     Running   0          4h25m   192.168.56.227   ip-192-168-32-247.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-jz5z9   1/1     Running   0          4h25m   192.168.59.12    ip-192-168-32-247.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-mr6mf   1/1     Running   0          4h25m   192.168.11.249   ip-192-168-31-109.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-qqvnr   1/1     Running   0          4h25m   192.168.3.228    ip-192-168-31-109.ec2.internal   <none>           <none>
++ kubectl apply --filename=k8-deployment-config.yml
+deployment.apps/cloud-devops-capstone-project configured
+service/capstone-project-elb unchanged
++ kubectl get services
+NAME                   TYPE           CLUSTER-IP     EXTERNAL-IP                                                              PORT(S)          AGE
+capstone-project-elb   LoadBalancer   10.100.77.85   ac84e215e577d4eb9a6fa4ac3d7708a6-229427463.us-east-1.elb.amazonaws.com   8080:32092/TCP   4h25m
+kubernetes             ClusterIP      10.100.0.1     <none>                                                                   443/TCP          4h43m
++ kubectl get pods -o wide
+NAME                                             READY   STATUS              RESTARTS   AGE     IP               NODE                             NOMINATED NODE   READINESS GATES
+cloud-devops-capstone-project-54cb4855b6-5v967   1/1     Running             0          2s      192.168.19.119   ip-192-168-31-109.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-54cb4855b6-7j5bt   0/1     ContainerCreating   0          2s      <none>           ip-192-168-31-109.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-54cb4855b6-gjdkh   1/1     Running             0          2s      192.168.63.222   ip-192-168-32-247.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-54cb4855b6-hgdql   1/1     Running             0          2s      192.168.60.141   ip-192-168-32-247.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-2k8h4   1/1     Running             0          4h25m   192.168.15.201   ip-192-168-31-109.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-58v9w   1/1     Running             0          4h25m   192.168.48.46    ip-192-168-32-247.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-6b5qj   1/1     Running             0          4h25m   192.168.50.176   ip-192-168-32-247.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-c8tp6   0/1     Terminating         0          4h25m   192.168.56.227   ip-192-168-32-247.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-jz5z9   1/1     Running             0          4h25m   192.168.59.12    ip-192-168-32-247.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-mr6mf   1/1     Running             0          4h25m   192.168.11.249   ip-192-168-31-109.ec2.internal   <none>           <none>
+cloud-devops-capstone-project-7ff8ff4c6f-qqvnr   1/1     Running             0          4h25m   192.168.3.228    ip-192-168-31-109.ec2.internal   <none>           <none>
+
+```
+
+
+### Deployment Services and Pod Details Before and After Deployment to Cluster
+
+![rolling deployment services and pod details](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/rolling-deployment-services-and-pod-details.png)
+
+
+### EKS Cluster
+
+![eks cluster general info](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/eks-cluster.png)
+
+
+### CloudFormation Stack Info - EKS Cluster
+
+![eks cluster stack info](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/eks-cluster-stack-info.png)
+
+
+### CloudFormation Events - EKS Cluster
+
+![eks cluster events](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/eks-cluster-events.png)
+
+
+### CloudFormation Resources - EKS Cluster
+
+![eks cluster resources](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/eks-cluster-resources.png)
+
+
+
+Docker application:
+===================
+
+
+## Nginx "Hello World, my name is (student name)" application.
+* I used a [nginx image](https://hub.docker.com/_/nginx):
+* Specifically the alpine tag - [nginx:stable-alpine](https://github.com/nginxinc/docker-nginx/blob/70e44865208627c5ada57242b46920205603c096/stable/alpine/Dockerfile)
+  + This image is based on the popular Alpine Linux project, available in the alpine official image. Alpine Linux is much smaller than most distribution base images (approx. 5MB), and thus leads to much slimmer images in general.
+
+
+## Docker Hub Repository
+![docker hub repo](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/docker-hub-repo.png)
+
+
+## [Application Link](http://ac84e215e577d4eb9a6fa4ac3d7708a6-229427463.us-east-1.elb.amazonaws.com:8080/)
+  + http://ac84e215e577d4eb9a6fa4ac3d7708a6-229427463.us-east-1.elb.amazonaws.com:8080/
+
+![application](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/application.png)
+
 
 
 Requirements
 ============
+
 
 * [Git](https://git-scm.com/downloads) is installed.
 * [Python 3](https://www.python.org/downloads/) is installed.
@@ -63,8 +184,10 @@ Requirements
 * [The Tidy HTML linter](https://www.w3.org/People/Raggett/tidy/) is installed.
 
 
+
 Configuration
 =============
+
 
 * Software dependencies are installed.
 * Set up IAM credentials in AWS.
@@ -86,8 +209,10 @@ Configuration
 * Add Pipeline.
 
 
+
 References
 ==========
+
 
 * [Using a Jenkinsfile](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/)
 * [End-to-End Multibranch Pipeline Project Creation](https://www.jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/)
