@@ -205,7 +205,7 @@ Configuration
 * Add GitHub credentials to Jenkins.
 * Add Docker Hub credentials to Jenkins.
 * Add AWS credentials to Jenkins.
-* Configure your AWS CLI credentials.
+* Configure AWS CLI credentials.
 * Use the [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) script.
 * Create the Amazon EKS cluster.
   + This was accomplished by running the `k8_cluster_initializer.sh` script.
@@ -224,7 +224,7 @@ References
 * [End-to-End Multibranch Pipeline Project Creation](https://www.jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/)
 * [nginx documentation](http://nginx.org/en/docs/)
 * [nginx image](https://hub.docker.com/_/nginx):
-* [nginx:stable-alpine tage](https://github.com/nginxinc/docker-nginx/blob/70e44865208627c5ada57242b46920205603c096/stable/alpine/Dockerfile)
+* [nginx:stable-alpine tag](https://github.com/nginxinc/docker-nginx/blob/70e44865208627c5ada57242b46920205603c096/stable/alpine/Dockerfile)
 * [Docker Installation on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 * [Docker Pipeline](https://plugins.jenkins.io/docker-workflow/)
 * [Pushing docker images to Docker Hub](https://appfleet.com/blog/building-docker-images-to-docker-hub-using-jenkins-pipelines/)
