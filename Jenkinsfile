@@ -35,7 +35,10 @@ pipeline {
         stage('Deploy to Cluster') {
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                    sh './k8_cluster_initializer.sh'
+                    sh '''
+                        # ./k8_cluster_initializer.sh
+                        ./k8_cluster_constructor.sh
+                    '''
                 }
             }
         }
