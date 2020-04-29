@@ -78,3 +78,26 @@ Requirements
 * The [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) is installed.
 * [eksctl - the official CLI tool for Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) is installed.
 * [The Tidy HTML linter](https://www.w3.org/People/Raggett/tidy/) is installed.
+
+
+Configuration
+=============
+
+* Software dependencies are installed.
+* Set up IAM credentials in AWS.
+* Launch EC2 Instance for Jenkins box and configure.
+* Install Jenkins and configure.
+* Verify `Blue Ocean` plugin is installed in Jenkins.
+* Verify `Docker` plugin is installed in Jenkins.
+* Verify `Pipeline: AWS Steps` plugin is installed in Jenkins.
+* Set up a GitHub Repository.
+* Add GitHub credentials to Jenkins.
+* Add Docker Hub credentials to Jenkins.
+* Add AWS credentials to Jenkins.
+* Configure your AWS CLI credentials.
+* Use the [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
+* Create the Amazon EKS cluster.
+  + This was accomplished by running the `k8_cluster_initializer.sh` script.
+* Update the Amazon EKS cluster once its creation is complete.
+  + This was accomplished by running the `k8_cluster_constructor.sh` script.
+* Create Pipeline.
