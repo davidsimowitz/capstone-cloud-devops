@@ -74,7 +74,7 @@ Configuration
 * Add Docker Hub credentials to Jenkins.
 * Add AWS credentials to Jenkins.
 * Configure your AWS CLI credentials.
-* Use the [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
+* Use the [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) script.
 * Create the Amazon EKS cluster.
   + This was accomplished by running the `k8_cluster_initializer.sh` script.
 * Update the Amazon EKS cluster once its creation is complete.
