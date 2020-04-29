@@ -37,7 +37,8 @@ pipeline {
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
                     sh '''
                         # ./k8_cluster_initializer.sh
-                        ./k8_cluster_constructor.sh
+                        # ./k8_cluster_constructor.sh
+                        kubectl apply --filename=k8-deployment-config.yml
                     '''
                 }
             }
