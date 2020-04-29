@@ -42,6 +42,11 @@ Project Details
   + Nginx "Hello World, my name is (student name)" application.
 
 
+[Application Link](http://ac84e215e577d4eb9a6fa4ac3d7708a6-229427463.us-east-1.elb.amazonaws.com:8080/)
+==================
+* http://ac84e215e577d4eb9a6fa4ac3d7708a6-229427463.us-east-1.elb.amazonaws.com:8080/
+
+
 Requirements
 ============
 
