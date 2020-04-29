@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-devops-capstone-project
+spec:
+  minReadySeconds: 60
+  progressDeadlineSeconds: 600
+  replicas: 8
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: cloud-devops-capstone-project
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: cloud-devops-capstone-project
+    spec:
+      containers:
+      - name: cloud-devops-capstone-project
+        image: davidsimowitz/cloud-devops-capstone-project:1.0
+        ports:
+        - containerPort: 80
