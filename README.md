@@ -101,3 +101,34 @@ Configuration
 * Update the Amazon EKS cluster once its creation is complete.
   + This was accomplished by running the `k8_cluster_constructor.sh` script.
 * Create Pipeline.
+
+
+References
+==========
+
+* [Using a Jenkinsfile](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/)
+* [End-to-End Multibranch Pipeline Project Creation](https://www.jenkins.io/doc/tutorials/build-a-multibranch-pipeline-project/)
+* [nginx documentation](http://nginx.org/en/docs/)
+* [nginx image](https://hub.docker.com/_/nginx):
+* [nginx:stable-alpine tage](https://github.com/nginxinc/docker-nginx/blob/70e44865208627c5ada57242b46920205603c096/stable/alpine/Dockerfile)
+* [Docker Installation on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+* [Docker Pipeline](https://plugins.jenkins.io/docker-workflow/)
+* [Pushing docker images to Docker Hub](https://appfleet.com/blog/building-docker-images-to-docker-hub-using-jenkins-pipelines/)
+* [Installing kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux)
+* [Overview of kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
+* [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+* [Kubernetes API Reference Docs for Deployment v1 apps](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#deployment-v1-apps)
+* [Interacting with running pods](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#interacting-with-running-pods)
+* [eksctl - The official CLI for Amazon EKS](https://eksctl.io/)
+* [Amazon EKS Workshop](https://eksworkshop.com/010_introduction/)
+* [Getting started with eksctl](https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html)
+* [Installing eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html)
+* [Installing aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
+* [Managing users or IAM roles for your cluster](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html)
+* [How To Authenticate to AWS with the Pipeline AWS Plugin](https://support.cloudbees.com/hc/en-us/articles/360027893492-How-To-Authenticate-to-AWS-with-the-Pipeline-AWS-Plugin)
+* [Jenkins Pipeline Step Plugin for AWS](https://github.com/jenkinsci/pipeline-aws-plugin)
+* [Amazon EKS cluster endpoint access control](https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
+* [Create a kubeconfig for Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html)
+* [Creating an Amazon EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html)
+* [Kubernetes LoadBalancer](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer)
+* [Troubleshoot Service Load Balancers for Amazon EKS](https://aws.amazon.com/premiumsupport/knowledge-center/eks-load-balancers-troubleshooting/)
