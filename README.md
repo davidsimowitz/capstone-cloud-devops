@@ -1,10 +1,11 @@
-Capstone Project
-================
+
+Develop a CI/CD Pipeline to Roll Out Containerized Microservices Using Rolling Deployment
+=========================================================================================
 
 
 Udacity - Cloud DevOps Engineer Nanodegree
 ------------------------------------------
-Capstone Project
+Capstone Project: Develop a CI/CD Pipeline to Roll Out Containerized Microservices Using Rolling Deployment
 
 
 ### Capstone Project Overview
@@ -24,11 +25,21 @@ You can find a detailed [project rubric, here](https://review.udacity.com/#!/rub
 
 
 ## Propose and Scope the Project
-* Plan what your pipeline will look like.
-* Decide which options you will include in your Continuous Integration phase.
-* Use Jenkins.
-* Pick a deployment type - either rolling deployment or blue/green deployment.
-* For the Docker application you can either use an application which you come up with, or use an open-source application pulled from the Internet, or if you have no idea, you can use an Nginx “Hello World, my name is (student name)” application.
+
+* Pipeline:
+  + Initializing
+  + Lint HTML
+  + Build Docker Image
+  + Push to Docker Hub
+  + Deploy to Cluster
+  + Take Down
+
+* Deployment Type:
+  + Rolling Deployment
+
+* Docker application:
+  + Nginx “Hello World, my name is (student name)” application.
+
 
 ## Use Jenkins, and implement blue/green or rolling deployment.
 * Create your Jenkins master box with either Jenkins and install the plugins you will need.
