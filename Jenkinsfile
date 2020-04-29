@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Deploy to Cluster') {
             steps{
-                sh 'kubectl apply --filename=k8-deployment-config.yml'
+                sh './k8_cluster_initializer.sh'
             }
         }
         stage('Take Down') {

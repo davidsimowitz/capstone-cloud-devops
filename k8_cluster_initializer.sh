@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 eksctl create cluster \
- --name cloud-devops-capstone-cluster \
+ --name cloud-devops-capstone-cluster-2 \
  --region us-east-1 \
  --version 1.15 \
  --nodegroup-name cloud-devops-nodes \
