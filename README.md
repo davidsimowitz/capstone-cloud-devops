@@ -26,6 +26,7 @@ You can find a detailed [project rubric, here](https://review.udacity.com/#!/rub
 
 
 
+
 Project Details
 ===============
 
@@ -58,6 +59,7 @@ Project Details
 
 
 
+
 Linting Stage Verification
 ==========================
 
@@ -70,6 +72,7 @@ Linting Stage Verification
 ## HTML Linting Check Passes Corrected HTML Tag:
 
 ![jenkins pipeline lint html stage pass](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/jenkins-pipeline-lint-html-stage-pass.png)
+
 
 
 
@@ -146,13 +149,13 @@ cloud-devops-capstone-project-7ff8ff4c6f-qqvnr   1/1     Running             0  
 
 
 
+
 Docker application:
 ===================
 
 
 ## Nginx "Hello World, my name is (student name)" application.
-* I used a [nginx image](https://hub.docker.com/_/nginx):
-* Specifically the alpine tag - [nginx:stable-alpine](https://github.com/nginxinc/docker-nginx/blob/70e44865208627c5ada57242b46920205603c096/stable/alpine/Dockerfile)
+* I used an [nginx image](https://hub.docker.com/_/nginx), specifically the alpine tag - [nginx:stable-alpine](https://github.com/nginxinc/docker-nginx/blob/70e44865208627c5ada57242b46920205603c096/stable/alpine/Dockerfile)
   + This image is based on the popular Alpine Linux project, available in the alpine official image. Alpine Linux is much smaller than most distribution base images (approx. 5MB), and thus leads to much slimmer images in general.
 
 
@@ -164,6 +167,7 @@ Docker application:
   + http://ac84e215e577d4eb9a6fa4ac3d7708a6-229427463.us-east-1.elb.amazonaws.com:8080/
 
 ![application](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/application.png)
+
 
 
 
@@ -182,6 +186,7 @@ Requirements
 * The [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) is installed.
 * [eksctl - the official CLI tool for Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) is installed.
 * [The Tidy HTML linter](https://www.w3.org/People/Raggett/tidy/) is installed.
+
 
 
 
@@ -207,6 +212,7 @@ Configuration
 * Update the Amazon EKS cluster once its creation is complete.
   + This was accomplished by running the `k8_cluster_constructor.sh` script.
 * Add Pipeline.
+
 
 
 
