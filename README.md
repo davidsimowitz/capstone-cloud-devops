@@ -54,7 +54,7 @@ Project Details
 ![Jenkins pipeline deploy to cluster stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/jenkins-pipeline-deploy-to-cluster-stage.png)
 
 
-### Take Down Down:
+### Take Down Stage:
 ![Jenkins pipeline take down stage](https://github.com/davidsimowitz/capstone-cloud-devops/blob/master/images/jenkins-pipeline-take-down-stage.png)
 
 
@@ -155,7 +155,7 @@ Docker application:
 
 
 ## Nginx "Hello World, my name is (student name)" application.
-* I used an [nginx image](https://hub.docker.com/_/nginx), specifically the alpine tag - [nginx:stable-alpine](https://github.com/nginxinc/docker-nginx/blob/70e44865208627c5ada57242b46920205603c096/stable/alpine/Dockerfile)
+* I used an [nginx image](https://hub.docker.com/_/nginx), specifically the alpine tag - [nginx:stable-alpine](https://github.com/nginxinc/docker-nginx/blob/70e44865208627c5ada57242b46920205603c096/stable/alpine/Dockerfile):
   + This image is based on the popular Alpine Linux project, available in the alpine official image. Alpine Linux is much smaller than most distribution base images (approx. 5MB), and thus leads to much slimmer images in general.
 
 
