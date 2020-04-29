@@ -5,4 +5,4 @@ docker login --username davidsimowitz
 docker pull davidsimowitz/cloud-devops-capstone-project
 
 # Deploy to initialized Amazon EKS cluster
-kubectl apply --filename=deployment-app-config.yml
+kubectl apply --filename=k8-deployment-config.yml
