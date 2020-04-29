@@ -34,10 +34,7 @@ pipeline {
         }
         stage('Deploy to Cluster') {
             steps{
-                sh '''
-                    kubectl get pods -o wide
-                    kubectl apply --kubeconfig k8-deployment-config.yml
-                '''
+                sh 'kubectl --kubeconfig=/home/ubuntu/.kube/config apply --filename=k8-deployment-config.yml'
             }
         }
         stage('Take Down') {
