@@ -62,3 +62,19 @@ You can find a detailed [project rubric, here](https://review.udacity.com/#!/rub
 * Verify that your pipeline works as you designed it.
 * Take a screenshot of the Jenkins pipeline showing deployment and a screenshot of your AWS EC2 page showing the newly created (for blue/green) or modified (for rolling) instances. Make sure you name your instances differently between blue and green deployments.
 
+
+Requirements
+============
+
+* [Git](https://git-scm.com/downloads) is installed.
+* [Python 3](https://www.python.org/downloads/) is installed.
+* [Pip](https://pip.pypa.io/en/stable/installing/) is installed.
+* [Jenkins](https://www.jenkins.io/doc/book/installing/) is installed and configured correctly.
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) is installed.
+* [Docker](https://docs.docker.com/engine/install/ubuntu/) is installed and configured.
+* [Docker Hub](https://hub.docker.com/) Account for image repository.
+* The Kubernetes command-line tool, [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) is installed and configured.
+* The [AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html) is installed.
+* The [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) is installed.
+* [eksctl - the official CLI tool for Amazon EKS](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) is installed.
+* [The Tidy HTML linter](https://www.w3.org/People/Raggett/tidy/) is installed.
