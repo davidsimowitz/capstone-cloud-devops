@@ -38,7 +38,7 @@ You can find a detailed [project rubric, here](https://review.udacity.com/#!/rub
   + Rolling Deployment
 
 * Docker application:
-  + Nginx “Hello World, my name is (student name)” application.
+  + Nginx "Hello World, my name is (student name)" application.
 
 
 ## Use Jenkins, and implement blue/green or rolling deployment.
@@ -100,7 +100,7 @@ Configuration
   + This was accomplished by running the `k8_cluster_initializer.sh` script.
 * Update the Amazon EKS cluster once its creation is complete.
   + This was accomplished by running the `k8_cluster_constructor.sh` script.
-* Create Pipeline.
+* Add Pipeline.
 
 
 References
