@@ -71,12 +71,10 @@ pipeline {
                 }
             }
         }
-        stage('Take Down') {
-            steps{
-                script {
-                    sh 'docker rmi $registry:$version'
-                }
-            }
+    }
+    post {
+        cleanup {
+            sh 'docker rmi $registry:$version'
         }
     }
 }
