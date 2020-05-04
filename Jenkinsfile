@@ -40,6 +40,7 @@ pipeline {
             }
             input {
                 message 'Proceed with cluster creation?'
+                ok 'Yes, create cluster.'
             }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
