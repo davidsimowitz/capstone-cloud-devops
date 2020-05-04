@@ -72,6 +72,31 @@ pipeline {
                 }
             }
         }
+        stage('Delete Cluster') {
+            when {
+                beforeInput true
+                branch 'tear-down-cluster'
+            }
+            input {
+                message 'Warning, about to delete cluster..'
+                ok 'Continue with cluster deletion.'
+            }
+            steps{
+                withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                    sh '''
+                        # Display services and pod detail pre-deployment
+                        kubectl get services
+                        kubectl get pods -o wide
+
+                        ./k8_cluster_deletion.sh
+
+                        # Display services and pod detail post-deployment
+                        kubectl get services
+                        kubectl get pods -o wide
+                    '''
+                }
+            }
+        }
     }
     post {
         cleanup {
