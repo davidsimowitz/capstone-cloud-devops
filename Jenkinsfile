@@ -33,6 +33,20 @@ pipeline {
                 }
             }
         }
+        stage('Create Cluster') {
+            steps{
+                withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                    sh '''
+                        ./k8_cluster_initializer.sh
+                        ./k8_cluster_constructor.sh
+
+                        # Display services and pod detail post-deployment
+                        kubectl get services
+                        kubectl get pods -o wide
+                    '''
+                }
+            }
+        }
         stage('Deploy to Cluster') {
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
@@ -41,8 +55,6 @@ pipeline {
                         kubectl get services
                         kubectl get pods -o wide
 
-                        # ./k8_cluster_initializer.sh
-                        # ./k8_cluster_constructor.sh
                         kubectl apply --filename=k8-deployment-config.yml
 
                         # Display services and pod detail post-deployment
