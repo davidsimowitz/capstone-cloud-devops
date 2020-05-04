@@ -29,7 +29,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: capstone-project-elb
+  name: microservice-elb
   labels:
     app: cloud-devops-capstone-project
 spec:
