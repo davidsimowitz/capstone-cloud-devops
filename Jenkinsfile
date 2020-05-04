@@ -35,7 +35,11 @@ pipeline {
         }
         stage('Create Cluster') {
             when {
+                beforeInput true
                 branch 'initialize-cluster'
+            }
+            input {
+                message 'Proceed with cluster creation?'
             }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
