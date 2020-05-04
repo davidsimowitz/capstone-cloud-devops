@@ -34,6 +34,9 @@ pipeline {
             }
         }
         stage('Create Cluster') {
+            when {
+                branch 'initialize-cluster'
+            }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
                     sh '''
