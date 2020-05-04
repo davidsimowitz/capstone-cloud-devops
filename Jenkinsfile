@@ -78,7 +78,7 @@ pipeline {
                 branch 'tear-down-cluster'
             }
             input {
-                message 'Warning, about to delete cluster..'
+                message 'Warning, about to delete cluster...'
                 ok 'Continue with cluster deletion.'
             }
             steps{
@@ -88,7 +88,8 @@ pipeline {
                         kubectl get services
                         kubectl get pods -o wide
 
-                        ./k8_cluster_deletion.sh
+                        #./k8_cluster_deletion.sh
+                        eksctl delete cluster --name microservice
 
                         # Display services and pod detail post-deployment
                         kubectl get services
