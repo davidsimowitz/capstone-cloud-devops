@@ -92,8 +92,7 @@ pipeline {
                         kubectl get services
                         kubectl get pods -o wide
 
-                        #./k8_cluster_deletion.sh
-                        kubectl delete --filename=k8-deployment-config.yml
+                        ./k8_cluster_deletion.sh
 
                         # Display services and pod detail post-deployment
                         kubectl get services
