@@ -88,7 +88,7 @@ pipeline {
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
                     sh '''
-                        ./k8_cluster_deletion.sh
+                        eksctl delete cluster --region=us-east-1 --name=eks-microservice-cluster
                     '''
                 }
             }
