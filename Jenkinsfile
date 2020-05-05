@@ -89,7 +89,7 @@ pipeline {
                         kubectl get pods -o wide
 
                         #./k8_cluster_deletion.sh
-                        eksctl delete cluster --name microservice
+                        kubectl delete --filename=k8-deployment-config.yml
 
                         # Display services and pod detail post-deployment
                         kubectl get services
