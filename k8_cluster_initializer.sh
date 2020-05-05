@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 eksctl create cluster \
- --name eks-microservice-cluster \
+ --name microservice \
  --region us-east-1 \
  --version 1.15 \
  --nodegroup-name workers \
