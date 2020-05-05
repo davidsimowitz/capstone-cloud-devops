@@ -56,6 +56,10 @@ pipeline {
             }
         }
         stage('Deploy to Cluster') {
+            when {
+                beforeInput true
+                branch 'master'
+            }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
                     sh '''
