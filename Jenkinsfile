@@ -55,6 +55,11 @@ pipeline {
                 }
             }
         }
+        post {
+            success {
+                sh 'eksctl utils describe-stacks --region=us-east-1 --cluster=microservice'
+            }
+        }
         stage('Deploy to Cluster') {
             when {
                 beforeInput true
