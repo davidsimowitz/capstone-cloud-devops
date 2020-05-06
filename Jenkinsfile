@@ -47,10 +47,7 @@ pipeline {
             }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                    sh '''
-                        ./k8_cluster_initializer.sh
-                        ./k8_cluster_constructor.sh
-                    '''
+                    sh './k8_cluster_initializer.sh'
                 }
             }
             post {
@@ -68,13 +65,19 @@ pipeline {
             }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                    sh '''
-                        kubectl apply --filename=k8-deployment-config.yml
-
-                        # Display services and pod detail post-deployment
-                        kubectl get services
-                        kubectl get pods -o wide
-                    '''
+                    sh './k8_cluster_deployer.sh'
+                }
+            }
+            post {
+                success {
+                    withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                        sh './k8_display_post_deployment_details.sh'
+                    }
+                }
+                failure {
+                    withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                        sh './k8_error_to_deploy.sh'
+                    }
                 }
             }
         }
@@ -82,6 +85,9 @@ pipeline {
             when {
                 beforeInput true
                 branch 'tear-down-cluster'
+            }
+            options {
+                retry(3)
             }
             input {
                 message 'Warning, about to delete cluster...'
