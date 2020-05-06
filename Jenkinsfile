@@ -56,7 +56,7 @@ pipeline {
             post {
                 success {
                     withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                        sh 'eksctl utils describe-stacks --region=us-east-1 --cluster=microservice'
+                        sh './k8_display_post_creation_details.sh'
                     }
                 }
             }
@@ -69,10 +69,6 @@ pipeline {
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
                     sh '''
-                        # Display services and pod detail pre-deployment
-                        kubectl get services
-                        kubectl get pods -o wide
-
                         kubectl apply --filename=k8-deployment-config.yml
 
                         # Display services and pod detail post-deployment
