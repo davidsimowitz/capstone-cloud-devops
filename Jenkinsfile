@@ -56,10 +56,14 @@ pipeline {
             }
             post {
                 success {
-                    sh 'eksctl utils describe-stacks --region=us-east-1 --cluster=microservice'
+                    withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                        sh 'eksctl utils describe-stacks --region=us-east-1 --cluster=microservice'
+                    }
                 }
                 failure {
-                    sh 'eksctl delete cluster --region=us-east-1 --name=microservice'
+                    withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                        sh 'eksctl delete cluster --region=us-east-1 --name=microservice'
+                    }
                 }
             }
         }
