@@ -54,13 +54,13 @@ pipeline {
                     '''
                 }
             }
-        }
-        post {
-            success {
-                sh 'eksctl utils describe-stacks --region=us-east-1 --cluster=microservice'
-            }
-            failure {
-                sh 'eksctl delete cluster --region=us-east-1 --name=microservice'
+            post {
+                success {
+                    sh 'eksctl utils describe-stacks --region=us-east-1 --cluster=microservice'
+                }
+                failure {
+                    sh 'eksctl delete cluster --region=us-east-1 --name=microservice'
+                }
             }
         }
         stage('Deploy to Cluster') {
