@@ -47,13 +47,13 @@ pipeline {
             }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                    sh './k8_cluster_initializer.sh'
+                    sh './scripts/k8-initialize-cluster.sh'
                 }
             }
             post {
                 success {
                     withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                        sh './k8_display_post_creation_details.sh'
+                        sh './scripts/k8-init-logging.sh'
                     }
                 }
             }
@@ -65,18 +65,18 @@ pipeline {
             }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                    sh './k8_cluster_deployer.sh'
+                    sh './scripts/k8-deploy-cluster.sh'
                 }
             }
             post {
                 success {
                     withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                        sh './k8_display_post_deployment_details.sh'
+                        sh './scripts/k8-deployment-logging.sh'
                     }
                 }
                 failure {
                     withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                        sh './k8_error_to_deploy.sh'
+                        sh './scripts/k8-deployment-error-logging.sh'
                     }
                 }
             }
@@ -95,7 +95,7 @@ pipeline {
             }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                    sh './k8_cluster_deletion.sh'
+                    sh './scripts/k8-delete-cluster.sh'
                 }
             }
         }
