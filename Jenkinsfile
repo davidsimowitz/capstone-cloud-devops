@@ -47,10 +47,6 @@ pipeline {
                     sh '''
                         ./k8_cluster_initializer.sh
                         ./k8_cluster_constructor.sh
-
-                        # Display services and pod detail post-deployment
-                        kubectl get services
-                        kubectl get pods -o wide
                     '''
                 }
             }
