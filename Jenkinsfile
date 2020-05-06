@@ -42,6 +42,9 @@ pipeline {
                 message 'Proceed with cluster creation?'
                 ok 'Yes, create cluster.'
             }
+            options {
+                retry(2)
+            }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
                     sh '''
@@ -54,11 +57,6 @@ pipeline {
                 success {
                     withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
                         sh 'eksctl utils describe-stacks --region=us-east-1 --cluster=microservice'
-                    }
-                }
-                failure {
-                    withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                        sh 'eksctl delete cluster --region=us-east-1 --name=microservice'
                     }
                 }
             }
