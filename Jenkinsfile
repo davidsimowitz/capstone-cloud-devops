@@ -99,9 +99,7 @@ pipeline {
             }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                    sh '''
-                        eksctl delete cluster --region=us-east-1 --name=eks-microservice-cluster
-                    '''
+                    sh 'eksctl delete cluster --region=us-east-1 --name=microservice'
                 }
             }
         }
