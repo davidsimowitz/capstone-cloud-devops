@@ -49,81 +49,85 @@ pipeline {
                 }
             }
         }
-        stage('Create Cluster') {
-            when {
-                beforeInput true
-                branch 'initialize-cluster'
-            }
-            input {
-                message 'Proceed with cluster creation?'
-                ok 'Yes, create cluster.'
-            }
-            options {
-                retry(2)
-            }
-            steps {
-                script {
-                    withAWS(credentials: 'aws-credentials', region: REGION) {
-                        sh '''
-                            chmod +x ./scripts/*.sh
-                            ./scripts/get-docker-image.sh
-                            ./scripts/k8-initialize-cluster.sh
-                        '''
+        stage('Update Cluster') {
+            parallel {
+                stage('Create Cluster') {
+                    when {
+                        beforeInput true
+                        branch 'initialize-cluster'
+                    }
+                    input {
+                        message 'Proceed with cluster creation?'
+                        ok 'Yes, create cluster.'
+                    }
+                    options {
+                        retry(2)
+                    }
+                    steps {
+                        script {
+                            withAWS(credentials: 'aws-credentials', region: REGION) {
+                                sh '''
+                                    chmod +x ./scripts/*.sh
+                                    ./scripts/get-docker-image.sh
+                                    ./scripts/k8-initialize-cluster.sh
+                                '''
+                            }
+                        }
+                    }
+                    post {
+                        success {
+                            withAWS(credentials: 'aws-credentials', region: REGION) {
+                                sh './scripts/k8-init-logging.sh'
+                            }
+                        }
                     }
                 }
-            }
-            post {
-                success {
-                    withAWS(credentials: 'aws-credentials', region: REGION) {
-                        sh './scripts/k8-init-logging.sh'
+                stage('Deploy to Cluster') {
+                    when {
+                        beforeInput true
+                        branch 'master'
+                    }
+                    steps{
+                        withAWS(credentials: 'aws-credentials', region: REGION) {
+                            sh '''
+                                chmod +x ./scripts/*.sh
+                                ./scripts/k8-deploy-cluster.sh
+                            '''
+                        }
+                    }
+                    post {
+                        success {
+                            withAWS(credentials: 'aws-credentials', region: REGION) {
+                                sh './scripts/k8-deployment-logging.sh'
+                            }
+                        }
+                        failure {
+                            withAWS(credentials: 'aws-credentials', region: REGION) {
+                                sh './scripts/k8-deployment-error-logging.sh'
+                            }
+                        }
                     }
                 }
-            }
-        }
-        stage('Deploy to Cluster') {
-            when {
-                beforeInput true
-                branch 'master'
-            }
-            steps{
-                withAWS(credentials: 'aws-credentials', region: REGION) {
-                    sh '''
-                        chmod +x ./scripts/*.sh
-                        ./scripts/k8-deploy-cluster.sh
-                    '''
-                }
-            }
-            post {
-                success {
-                    withAWS(credentials: 'aws-credentials', region: REGION) {
-                        sh './scripts/k8-deployment-logging.sh'
+                stage('Delete Cluster') {
+                    when {
+                        beforeInput true
+                        branch 'tear-down-cluster'
                     }
-                }
-                failure {
-                    withAWS(credentials: 'aws-credentials', region: REGION) {
-                        sh './scripts/k8-deployment-error-logging.sh'
+                    options {
+                        retry(2)
                     }
-                }
-            }
-        }
-        stage('Delete Cluster') {
-            when {
-                beforeInput true
-                branch 'tear-down-cluster'
-            }
-            options {
-                retry(2)
-            }
-            input {
-                message 'Warning, about to delete cluster...'
-                ok 'Continue with cluster deletion.'
-            }
-            steps{
-                withAWS(credentials: 'aws-credentials', region: REGION) {
-                    sh '''
-                        chmod +x ./scripts/*.sh
-                        ./scripts/k8-delete-cluster.sh
-                    '''
+                    input {
+                        message 'Warning, about to delete cluster...'
+                        ok 'Continue with cluster deletion.'
+                    }
+                    steps{
+                        withAWS(credentials: 'aws-credentials', region: REGION) {
+                            sh '''
+                                chmod +x ./scripts/*.sh
+                                ./scripts/k8-delete-cluster.sh
+                            '''
+                        }
+                    }
                 }
             }
         }
