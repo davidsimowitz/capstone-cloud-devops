@@ -29,8 +29,8 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker-hub-credentials = DOCKER_CREDS_USR + '/' + DOCKER_CREDS_PSW
-                    docker.withRegistry( '', 'docker-hub-credentials' ) {
+                    docker_hub_credentials = DOCKER_CREDS_USR + '/' + DOCKER_CREDS_PSW
+                    docker.withRegistry( '', 'docker_hub_credentials' ) {
                         DOCKER_IMAGE.push(TAG)
                     }
                 }
