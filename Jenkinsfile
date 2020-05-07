@@ -10,6 +10,9 @@ pipeline {
             REGION = 'us-east-1'
         }
     agent any
+    options {
+        timestamps()
+    }
     stages {
         stage('Initializing') {
             steps {
