@@ -1,7 +1,7 @@
 pipeline {
     environment {
             DOCKER_REPO = "davidsimowitz/cloud-devops-capstone-project"
-            DOCKER_CREDENTIALS = 'DockerHubID'
+            DOCKER_CREDS = credentials('DockerHubID')
             TAG = "1.1"
             DOCKER_IMAGE = ''
             CLUSTER = 'microservice'
@@ -29,7 +29,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry( '', DOCKER_CREDENTIALS ) {
+                    docker.withRegistry( '', DOCKER_CREDS ) {
                         DOCKER_IMAGE.push()
                     }
                 }
