@@ -49,7 +49,7 @@ pipeline {
             }
             steps {
                 script {
-                    withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                    withAWS(credentials: 'aws-credentials', region: REGION) {
                         sh '''
                             chmod +x ./scripts/*.sh
                             ./scripts/get-docker-image.sh
@@ -60,7 +60,7 @@ pipeline {
             }
             post {
                 success {
-                    withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                    withAWS(credentials: 'aws-credentials', region: REGION) {
                         sh './scripts/k8-init-logging.sh'
                     }
                 }
@@ -72,7 +72,7 @@ pipeline {
                 branch 'master'
             }
             steps{
-                withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                withAWS(credentials: 'aws-credentials', region: REGION) {
                     sh '''
                         chmod +x ./scripts/*.sh
                         ./scripts/k8-deploy-cluster.sh
@@ -81,12 +81,12 @@ pipeline {
             }
             post {
                 success {
-                    withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                    withAWS(credentials: 'aws-credentials', region: REGION) {
                         sh './scripts/k8-deployment-logging.sh'
                     }
                 }
                 failure {
-                    withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                    withAWS(credentials: 'aws-credentials', region: REGION) {
                         sh './scripts/k8-deployment-error-logging.sh'
                     }
                 }
@@ -105,7 +105,7 @@ pipeline {
                 ok 'Continue with cluster deletion.'
             }
             steps{
-                withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                withAWS(credentials: 'aws-credentials', region: REGION) {
                     sh '''
                         chmod +x ./scripts/*.sh
                         ./scripts/k8-delete-cluster.sh
