@@ -2,7 +2,7 @@ pipeline {
     environment {
             registry = "davidsimowitz/cloud-devops-capstone-project"
             registryCredential = 'DockerHubID'
-            version = "1.1"
+            TAG = "1.1"
             dockerImage = ''
             CLUSTER = 'microservice'
             REGION = 'us-east-1'
@@ -22,7 +22,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build registry + ":" + version
+                    dockerImage = docker.build registry + ":" + TAG
                 }
             }
         }
@@ -116,7 +116,7 @@ pipeline {
     }
     post {
         cleanup {
-            sh 'docker rmi $registry:$version'
+            sh 'docker rmi $registry:$TAG'
         }
     }
 }
