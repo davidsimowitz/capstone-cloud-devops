@@ -73,7 +73,10 @@ pipeline {
             }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                    sh './scripts/k8-deploy-cluster.sh'
+                    sh '''
+                        chmod +x ./scripts/*.sh
+                        ./scripts/k8-deploy-cluster.sh
+                    '''
                 }
             }
             post {
@@ -103,7 +106,10 @@ pipeline {
             }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                    sh './scripts/k8-delete-cluster.sh'
+                    sh '''
+                        chmod +x ./scripts/*.sh
+                        ./scripts/k8-delete-cluster.sh
+                    '''
                 }
             }
         }
