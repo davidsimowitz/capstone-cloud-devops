@@ -1,9 +1,9 @@
 pipeline {
     environment {
             DOCKER_REPO = "davidsimowitz/cloud-devops-capstone-project"
-            registryCredential = 'DockerHubID'
+            DOCKER_CREDENTIALS = 'DockerHubID'
             TAG = "1.1"
-            dockerImage = ''
+            DOCKER_IMAGE = ''
             CLUSTER = 'microservice'
             REGION = 'us-east-1'
         }
@@ -22,15 +22,15 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build DOCKER_REPO + ":" + TAG
+                    DOCKER_IMAGE = docker.build DOCKER_REPO + ":" + TAG
                 }
             }
         }
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry( '', registryCredential ) {
-                        dockerImage.push()
+                    docker.withRegistry( '', DOCKER_CREDENTIALS ) {
+                        DOCKER_IMAGE.push()
                     }
                 }
             }
