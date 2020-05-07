@@ -1,9 +1,10 @@
 pipeline {
     environment {
+            DOCKER_IMAGE = ''
+            TAG = "1.1"
             DOCKER_REPO = "davidsimowitz/cloud-devops-capstone-project"
             DOCKER_CREDS = credentials('docker-hub-credentials')
-            TAG = "1.1"
-            DOCKER_IMAGE = ''
+
             CLUSTER = 'microservice'
             REGION = 'us-east-1'
         }
