@@ -48,13 +48,11 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry( '', registryCredential ) {
-                        withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                            sh '''
-                                dockerImage.pull()
-                                ./scripts/k8-initialize-cluster.sh
-                            '''
-                        }
+                    withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                        sh '''
+                            ./scripts/get-docker-image.sh
+                            ./scripts/k8-initialize-cluster.sh
+                        '''
                     }
                 }
             }
