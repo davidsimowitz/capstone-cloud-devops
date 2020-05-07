@@ -50,6 +50,7 @@ pipeline {
                 script {
                     withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
                         sh '''
+                            chmod +x ./scripts/*.sh
                             ./scripts/get-docker-image.sh
                             ./scripts/k8-initialize-cluster.sh
                         '''
