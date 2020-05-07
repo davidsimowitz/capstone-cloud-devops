@@ -29,7 +29,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry( 'docker.io', 'DockerHubID' ) {
+                    docker.withRegistry( '', $DOCKER_CREDS ) {
                         DOCKER_IMAGE.push()
                     }
                 }
