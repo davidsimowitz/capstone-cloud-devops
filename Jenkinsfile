@@ -58,11 +58,6 @@ pipeline {
                     }
                 }
             }
-            steps{
-                withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
-                    sh './scripts/k8-initialize-cluster.sh'
-                }
-            }
             post {
                 success {
                     withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
