@@ -1,6 +1,6 @@
 pipeline {
     environment {
-            registry = "davidsimowitz/cloud-devops-capstone-project"
+            DOCKER_REPO = "davidsimowitz/cloud-devops-capstone-project"
             registryCredential = 'DockerHubID'
             TAG = "1.1"
             dockerImage = ''
@@ -22,7 +22,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build registry + ":" + TAG
+                    dockerImage = docker.build DOCKER_REPO + ":" + TAG
                 }
             }
         }
@@ -116,7 +116,7 @@ pipeline {
     }
     post {
         cleanup {
-            sh 'docker rmi $registry:$TAG'
+            sh 'docker rmi $DOCKER_REPO:$TAG'
         }
     }
 }
