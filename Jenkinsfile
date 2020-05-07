@@ -29,7 +29,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry( '', DOCKER_CREDS_USR + "/" + DOCKER_CREDS_PSW ) {
+                    docker.withRegistry( '', '$DOCKER_CREDS_USR' + '/' + '$DOCKER_CREDS_PSW' ) {
                         DOCKER_IMAGE.push(TAG)
                     }
                 }
