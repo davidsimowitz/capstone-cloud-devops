@@ -10,4 +10,3 @@ eksctl create cluster \
  --nodes 2 \
  --nodes-min 1 \
  --nodes-max 2
-
