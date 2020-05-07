@@ -56,7 +56,6 @@ pipeline {
             parallel {
                 stage('Create Cluster') {
                     when {
-                        beforeInput true
                         branch 'initialize-cluster'
                     }
                     input {
@@ -87,7 +86,6 @@ pipeline {
                 }
                 stage('Deploy to Cluster') {
                     when {
-                        beforeInput true
                         branch 'master'
                     }
                     steps{
@@ -113,7 +111,6 @@ pipeline {
                 }
                 stage('Delete Cluster') {
                     when {
-                        beforeInput true
                         branch 'tear-down-cluster'
                     }
                     options {
