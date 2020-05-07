@@ -4,7 +4,8 @@ pipeline {
             registryCredential = 'DockerHubID'
             version = "1.1"
             dockerImage = ''
-            CLUSTER_NAME = 'microservice'
+            CLUSTER = 'microservice'
+            REGION = 'us-east-1'
         }
     agent any
     stages {

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 eksctl create cluster \
- --name $CLUSTER_NAME \
- --region us-east-1 \
+ --name $CLUSTER \
+ --region $REGION \
  --version 1.15 \
  --nodegroup-name workers \
  --node-ami auto \
