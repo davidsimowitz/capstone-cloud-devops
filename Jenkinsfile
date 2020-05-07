@@ -4,6 +4,7 @@ pipeline {
             registryCredential = 'DockerHubID'
             version = "1.1"
             dockerImage = ''
+            CLUSTER_NAME = 'microservice'
         }
     agent any
     stages {
@@ -44,6 +45,18 @@ pipeline {
             }
             options {
                 retry(2)
+            }
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
+                            sh '''
+                                dockerImage.pull()
+                                ./scripts/k8-initialize-cluster.sh
+                            '''
+                        }
+                    }
+                }
             }
             steps{
                 withAWS(credentials: 'aws-credentials', region: 'us-east-1') {
