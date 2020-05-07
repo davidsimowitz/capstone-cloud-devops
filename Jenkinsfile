@@ -5,6 +5,7 @@ pipeline {
             DOCKER_REPO = "davidsimowitz/cloud-devops-capstone-project"
             DOCKER_CREDS = credentials('docker-hub-credentials')
 
+            K8_CONFIG_FILE = 'k8-deployment-config.yml'
             CLUSTER = 'microservice'
             REGION = 'us-east-1'
         }
