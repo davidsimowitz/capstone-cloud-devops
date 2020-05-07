@@ -16,17 +16,21 @@ pipeline {
                 sh 'echo "Initializing Jenkins Pipeline..."'
             }
         }
-        stage('Lint HTML') {
-            steps {
-                sh 'tidy -q -e static-html-directory/*.html'
-            }
-        }
-        stage('Lint Dockerfile') {
-            steps {
-                sh '''
-                    docker pull hadolint/hadolint
-                    docker run --rm -i hadolint/hadolint < Dockerfile
-                '''
+        stage('Parallel Tests') {
+            parallel {
+                stage('Lint HTML') {
+                    steps {
+                        sh 'tidy -q -e static-html-directory/*.html'
+                    }
+                }
+                stage('Lint Dockerfile') {
+                    steps {
+                        sh '''
+                            docker pull hadolint/hadolint
+                            docker run --rm -i hadolint/hadolint < Dockerfile
+                        '''
+                    }
+                }
             }
         }
         stage('Build Docker Image') {
