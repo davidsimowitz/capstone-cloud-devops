@@ -100,7 +100,7 @@ pipeline {
                 branch 'tear-down-cluster'
             }
             options {
-                retry(3)
+                retry(2)
             }
             input {
                 message 'Warning, about to delete cluster...'
