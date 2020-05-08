@@ -18,4 +18,4 @@ CMD ["nginx", "-g", "daemon off;"]
 # https://github.com/aquasecurity/microscanner
 ADD https://get.aquasec.com/microscanner .
 RUN chmod +x microscanner
-RUN ./microscanner ${token}
+RUN ./microscanner "${token:?}"
