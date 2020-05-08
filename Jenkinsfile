@@ -49,6 +49,16 @@ pipeline {
                 }
             }
         }
+        stage('Scan Docker Image') {
+            environment {
+                AQUA_MICROSCANNER_TOKEN = credentials('aqua-microscanner-token')
+            }
+            steps {
+                script {
+                    sh 'MICROSCANNER_TOKEN=$AQUA_MICROSCANNER_TOKEN ./scan.sh $DOCKER_REPO:$TAG'
+                }
+            }
+        }
         stage('Push to Docker Hub') {
             steps {
                 script {
