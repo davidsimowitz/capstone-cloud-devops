@@ -14,7 +14,7 @@ pipeline {
         timestamps()
     }
     stages {
-        stage('Initializing') {
+        stage('Initialize') {
             steps {
                 sh '''
                     echo "Initializing Jenkins Pipeline..."
@@ -23,14 +23,14 @@ pipeline {
                 '''
             }
         }
-        stage('Build Docker Image') {
+        stage('Build Image') {
             steps {
                 script {
                     sh './scripts/build-docker-image.sh'
                 }
             }
         }
-        stage('Parallel Tests') {
+        stage('Tests') {
             parallel {
                 stage('Lint HTML') {
                     steps {
@@ -47,7 +47,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Scan Docker Image') {
+                stage('Security Scan') {
                     environment {
                         AQUA_MICROSCANNER_TOKEN = credentials('aqua-microscanner-token')
                     }
@@ -59,7 +59,7 @@ pipeline {
                 }
             }
         }
-        stage('Push to Docker Hub') {
+        stage('Upload Image') {
             steps {
                 script {
                     sh './scripts/upload-docker-image.sh'
@@ -96,7 +96,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy to Cluster') {
+        stage('Deploy Cluster') {
             when {
                 beforeInput true
                 branch 'master'
