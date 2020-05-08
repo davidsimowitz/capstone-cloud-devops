@@ -16,6 +16,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 # Scan Dockerfile with Aqua MicroScanner
 # https://github.com/aquasecurity/microscanner
+ARG token
 ADD https://get.aquasec.com/microscanner .
 RUN chmod +x microscanner
 RUN ./microscanner "${token:?}"
