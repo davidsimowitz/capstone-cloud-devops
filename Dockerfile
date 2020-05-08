@@ -13,3 +13,9 @@ EXPOSE 80
 # https://hub.docker.com/_/nginx)
 # include -g daemon off in the CMD in order for nginx to stay in the foreground
 CMD ["nginx", "-g", "daemon off;"]
+
+# Scan Dockerfile with Aqua MicroScanner
+# https://github.com/aquasecurity/microscanner
+ADD https://get.aquasec.com/microscanner .
+RUN chmod +x microscanner
+RUN ./microscanner ${token}

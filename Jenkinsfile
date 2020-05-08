@@ -38,6 +38,9 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
+                environment {
+                    AQUA_MICROSCANNER_TOKEN = credentials('aqua-microscanner-token')
+                }
                 script {
                     sh '''
                         chmod +x ./scripts/*.sh
