@@ -39,16 +39,19 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    DOCKER_IMAGE = docker.build(DOCKER_REPO + ":" + TAG)
+                    sh '''
+                        docker build -t $DOCKER_REPO:$TAG
+                    '''
                 }
             }
         }
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry( '', 'docker-hub-credentials' ) {
-                        DOCKER_IMAGE.push(TAG)
-                    }
+                    sh '''
+                        docker login --username $DOCKER_CREDS_USR --password $DOCKER_CREDS_PSW
+                        docker push $DOCKER_REPO:$TAG
+                    '''
                 }
             }
         }
