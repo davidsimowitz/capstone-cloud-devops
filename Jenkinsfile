@@ -55,7 +55,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'MICROSCANNER_TOKEN=$AQUA_MICROSCANNER_TOKEN ./scan.sh $DOCKER_REPO:$TAG'
+                    sh 'MICROSCANNER_TOKEN=$AQUA_MICROSCANNER_TOKEN ./scripts/scan.sh $DOCKER_REPO:$TAG'
                 }
             }
         }
