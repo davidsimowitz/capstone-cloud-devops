@@ -22,6 +22,13 @@ pipeline {
                 '''
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh './scripts/build-docker-image.sh'
+                }
+            }
+        }
         stage('Parallel Tests') {
             parallel {
                 stage('Lint HTML') {
@@ -37,25 +44,15 @@ pipeline {
                         '''
                     }
                 }
-            }
-        }
-        stage('Build Docker Image') {
-            environment {
-                AQUA_MICROSCANNER_TOKEN = credentials('aqua-microscanner-token')
-            }
-            steps {
-                script {
-                    sh './scripts/build-docker-image.sh'
-                }
-            }
-        }
-        stage('Scan Docker Image') {
-            environment {
-                AQUA_MICROSCANNER_TOKEN = credentials('aqua-microscanner-token')
-            }
-            steps {
-                script {
-                    sh 'MICROSCANNER_TOKEN=$AQUA_MICROSCANNER_TOKEN ./scripts/scan.sh $DOCKER_REPO:$TAG'
+                stage('Scan Docker Image') {
+                    environment {
+                        AQUA_MICROSCANNER_TOKEN = credentials('aqua-microscanner-token')
+                    }
+                    steps {
+                        script {
+                            sh 'MICROSCANNER_TOKEN=$AQUA_MICROSCANNER_TOKEN ./scripts/scan.sh $DOCKER_REPO:$TAG'
+                        }
+                    }
                 }
             }
         }
