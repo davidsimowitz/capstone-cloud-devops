@@ -16,7 +16,10 @@ pipeline {
     stages {
         stage('Initializing') {
             steps {
-                sh 'echo "Initializing Jenkins Pipeline..."'
+                sh '''
+                    echo "Initializing Jenkins Pipeline..."
+                    chmod +x ./scripts/*.sh
+                '''
             }
         }
         stage('Parallel Tests') {
@@ -42,10 +45,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh '''
-                        chmod +x ./scripts/*.sh
-                        ./scripts/build-docker-image.sh
-                    '''
+                    sh './scripts/build-docker-image.sh'
                 }
             }
         }
@@ -62,10 +62,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    sh '''
-                        chmod +x ./scripts/*.sh
-                        ./scripts/upload-docker-image.sh
-                    '''
+                    sh './scripts/upload-docker-image.sh'
                 }
             }
         }
@@ -85,7 +82,6 @@ pipeline {
                 script {
                     withAWS(credentials: 'aws-credentials', region: REGION) {
                         sh '''
-                            chmod +x ./scripts/*.sh
                             ./scripts/get-docker-image.sh
                             ./scripts/k8-initialize-cluster.sh
                         '''
@@ -107,10 +103,7 @@ pipeline {
             }
             steps{
                 withAWS(credentials: 'aws-credentials', region: REGION) {
-                    sh '''
-                        chmod +x ./scripts/*.sh
-                        ./scripts/k8-deploy-cluster.sh
-                    '''
+                    sh './scripts/k8-deploy-cluster.sh'
                 }
             }
             post {
@@ -140,10 +133,7 @@ pipeline {
             }
             steps{
                 withAWS(credentials: 'aws-credentials', region: REGION) {
-                    sh '''
-                        chmod +x ./scripts/*.sh
-                        ./scripts/k8-delete-cluster.sh
-                    '''
+                    sh './scripts/k8-delete-cluster.sh'
                 }
             }
         }
