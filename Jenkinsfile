@@ -17,7 +17,6 @@ pipeline {
         stage('Initialize') {
             steps {
                 sh '''
-                    echo "Initializing Jenkins Pipeline..."
                     chmod +x ./scripts/*.sh
                     docker pull hadolint/hadolint
                 '''
