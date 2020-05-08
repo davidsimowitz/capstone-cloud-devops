@@ -19,6 +19,7 @@ pipeline {
                 sh '''
                     echo "Initializing Jenkins Pipeline..."
                     chmod +x ./scripts/*.sh
+                    docker pull hadolint/hadolint
                 '''
             }
         }
@@ -38,10 +39,12 @@ pipeline {
                 }
                 stage('Lint Dockerfile') {
                     steps {
-                        sh '''
-                            docker pull hadolint/hadolint
-                            docker run --rm -i hadolint/hadolint < Dockerfile
-                        '''
+                        sh 'docker run --rm -i hadolint/hadolint < Dockerfile'
+                    }
+                    post {
+                        always {
+                            sh 'docker rmi hadolint/hadolint'
+                        }
                     }
                 }
                 stage('Scan Docker Image') {
