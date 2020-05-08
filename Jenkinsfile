@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        docker build -t $DOCKER_REPO:$TAG
+                        docker build -t $DOCKER_REPO:$TAG .
                     '''
                 }
             }
